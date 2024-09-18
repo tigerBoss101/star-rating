@@ -1,0 +1,33 @@
+#rating {
+    background-color: #ffffff;
+    padding: 4rem;
+    border-radius: 1rem;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+    box-shadow: 10px 10px 4px rgba(255, 255, 255, 0.4);
+}
+
+#rating > h1 {
+    font-family: "Merriweather-Bold";
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--title-black);
+    text-align: center;
+}
+
+#rating > p {
+    font-family: "Poppins-Regular";
+    font-size: 18px;
+    color: var(--message-black);
+    width: 647px;
+    text-align: center;
+}
+
+.stars {
+    width: 548px;
+    height: 88px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
