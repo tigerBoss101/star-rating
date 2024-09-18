@@ -1,9 +1,12 @@
 import "./Star.css";
 
-import starImg from "../assets/images/star.png";
+import starImg from "../assets/images/star.svg";
+import blankImg from "../assets/images/blank_star.svg";
 
-export default function Star() {
+export default function Star({ active, onClick }) {
     return (
-        <img src={starImg} alt="Star" />
+        <button onClick={onClick} class="star" >
+            <img src={active ? starImg : blankImg} alt="Star" />
+        </button>
     );
 }

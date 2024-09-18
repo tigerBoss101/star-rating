@@ -1,4 +1,14 @@
-img {
+.star {
+    background-color: transparent;
+    border: none;
+}
+
+.star > img {
     width: 84px;
     height: 84px;
+    transition: all 0.25s ease-out;
+}
+
+.star > img:hover {
+    transform: scale(1.2);
 }
