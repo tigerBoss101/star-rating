@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Rating />
-      <footer><a href="https://www.flaticon.com/free-icons/star" title="star icons">Star icons created by Pixel perfect - Flaticon</a></footer>
+      <footer><a href="https://www.flaticon.com/free-icons/star" title="star icons" target="_blank">Star icons created by Pixel perfect - Flaticon</a></footer>
     </div>
   );
 }
