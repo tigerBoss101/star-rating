@@ -16,8 +16,10 @@ export default function Rating() {
     const stars = Array(5).fill(null).map((_, idx) => {
         return (
             <Star
-                active={idx <= score - 1}
-                onClick={() => setScore(idx+1)}
+                key={idx}
+                idx={idx}
+                score={score}
+                setScore={setScore}
             />
         )
     });
@@ -28,7 +30,7 @@ export default function Rating() {
             <div className="stars">
                 {stars}
             </div>
-            <p>{messages[score-1]}</p>
+            <p>{messages[Math.ceil(score-1)]}</p>
         </div>
     )
 }
