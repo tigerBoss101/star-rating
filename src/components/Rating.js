@@ -12,14 +12,18 @@ const messages = [
 ]
 
 export default function Rating() {
-    const [score, setScore] = useState(5);
+    const [scoreState, setScoreState] = useState({
+        score: 5,
+        hoverScore: 5,
+        hovering: false
+    });
     const stars = Array(5).fill(null).map((_, idx) => {
         return (
             <Star
                 key={idx}
                 idx={idx}
-                score={score}
-                setScore={setScore}
+                scoreState={scoreState}
+                setScoreState={setScoreState}
             />
         )
     });
@@ -30,7 +34,7 @@ export default function Rating() {
             <div className="stars">
                 {stars}
             </div>
-            <p>{messages[Math.ceil(score-1)]}</p>
+            <p>{messages[Math.ceil(scoreState.score-1)]}</p>
         </div>
     )
 }
