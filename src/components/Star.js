@@ -1,5 +1,5 @@
 import "./Star.css";
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 import starImg from "../assets/images/star.svg";
 import blankImg from "../assets/images/blank_star.svg";
@@ -39,16 +39,27 @@ export default function Star({ idx, scoreState, setScoreState }) {
         });
     }
 
-    const onMouseOver = (event) => {
-        console.log([event.clientX, event.clientY]);
-    }
+    const onMouseMove = useCallback((event) => {
+        const rect = event.target.getBoundingClientRect();
+        const relX = event.clientX - (rect.x + rect.width / 2);
+        setScoreState(prev => {
+            return {
+                ...prev,
+                hoverScore: relX < 0 ? idx + 0.5 : idx + 1
+            };
+        });
+    }, [idx, setScoreState]);
 
     useEffect(() => {
-        starRef.current.addEventListener("mouseover", onMouseOver);
-        const tempButton = starRef;
+        if (hovering) {
+            starRef.current.addEventListener("mousemove", onMouseMove);
+        }
+        const tempStar = starRef;
 
-        return () => tempButton.current.removeEventListener("mouseover", onMouseOver);
-    }, []);        
+        return () => {
+            tempStar.current.removeEventListener("mousemove", onMouseMove);
+        }
+    }, [hovering, onMouseMove]);
 
     let image;
     const currentScore = hovering ? hoverScore : score
@@ -63,8 +74,8 @@ export default function Star({ idx, scoreState, setScoreState }) {
     }
 
     return (
-        <button className="star" onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
-            <img src={image} alt="Star" ref={starRef} />
+        <button className="star" onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={starRef} >
+            <img src={image} alt="Star" />
         </button>
     );
 }
